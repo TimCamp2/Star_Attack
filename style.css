@@ -1,0 +1,27 @@
+body {
+  background-color: #4682B4
+}
+
+.title {
+  font-family: impact;
+  font-size:600%;
+  font-style:italic;
+  text-align: center
+}
+
+.start-screen {
+  height: 100%;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;  
+  font-family: Trebuchet MS;
+  line-height: 300%;
+  text-align: center;
+}
+
+
+#gameBox {
+  border: solid 5px black;
+  border-radius: 7px;
+  height: 500px
+}
