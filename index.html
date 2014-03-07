@@ -1,23 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Star Attack</title>
+    <title>Space Invaders</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/core.css">
+    <link rel="stylesheet" type="text/css" href="css/typeography.css">
+    <style>
+        /* Styling needed for a fullscreen canvas and no scrollbars. */
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Here's where we'll put Space Invader styles... */
+    </style>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
-    <div id="start-screen" class="start-screen hidden-upon-start">
-        <div class="title-message-container">
-            <div class="title">Star Attack</div>
-            <br>
-            <br>
-            <div class="subtitle">Click below to begin</div>
-            <div class="difficulty-link-container">
-                <a href="#" class="start">I'm Ready!</a>
-            </div>
-        </div>
+    <!-- this is where the Space Invaders HTML will go... */ -->
+    <div id="starfield"></div>
+    <div id="gamecontainer">
+        <canvas id="gameCanvas"></canvas>
     </div>
+    <script src="js/starfield.js"></script>
+    <script src="js/spaceinvaders.js"></script>
+    <script>
+        /* And this is where we'll put our JS. */
+        //  Create the starfield.
+        var container = document.getElementById('starfield');
+        var starfield = new Starfield();
+        starfield.initialize(container);
+        starfield.start();
+
+        //  Setup the canvas.
+        var canvas = document.getElementById("gameCanvas");
+        canvas.width = 800;
+        canvas.height = 600;
+
+        //  Create the game.
+        var game = new Game();
+
+        //  Initialise it with the game canvas.
+        game.initialize(canvas);
+
+        //  Start the game.
+        game.start();
+
+        //  Listen for keyboard events.
+        window.addEventListener("keydown", function keydown(e) {
+            var keycode = e.which || window.event.keycode;
+            //  Supress further processing of left/right/space (37/29/32)
+            if (keycode == 37 || keycode == 39 || keycode == 32) {
+                e.preventDefault();
+            }
+            game.keyDown(keycode);
+        });
+        window.addEventListener("keyup", function keydown(e) {
+            var keycode = e.which || window.event.keycode;
+            game.keyUp(keycode);
+        });
+    </script>
 </body>
-</html>
+</html> 
